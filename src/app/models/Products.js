@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+//const Products = require('sequelize');
 
 class Products extends Model {
   static init(sequelize) {

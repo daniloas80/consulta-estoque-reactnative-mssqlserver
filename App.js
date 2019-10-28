@@ -1,114 +1,119 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
+import React, { Component } from 'react';
+import { View, Text, FlatList } from 'react-native';
 
-import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import './src/config/ReactotronConfig';
+
+const axios = require('axios')
 
 import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+  Container,
+  List,
+  Product,
+  Produto
+} from './styles';
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    
+  } 
+  
+
+
+
+  // fetchData = async () => {
+  //   const { produtos } = this.state.data;
+  //   // const response = await fetch('http://192.168.0.27:3333/produtos');
+  //   // const produtos = await response.json();
+  //   const response = await axios.get('http://192.168.0.27:3333/produtos');
+    
+  //   //console.log(response);
+  //   console.tron.log("HELLo");
+
+   
+  //   const data = {
+  //     NumProduto: response.data.NumProduto,
+  //   };
+
+  //   this.setState({
+  //     produtos: [data],
+  //   });
+  // }; 
+ 
+  state = {
+    data: [],
+  };
+
+  fetchData = async () => {
+    // const dados = await fetch('http://192.168.0.27:3333/produtos')
+    //    .then(response => response.json())
+    //    .then(data => this.setState({ data }));
+    //    console.log(dados);
+    const response = await fetch('http://192.168.0.27:3333/produtos');
+       const produtos = await response.json();
+       this.setState({data: produtos});
+  }
+
+  componentDidMount() {
+    this.fetchData();
+    // fetch('http://192.168.0.27:3333/produtos')
+    //   .then(response => response.json())
+    //   .then(data => this.setState({ data }));
+    //const { prdoutos } = this.state;
+    
+    // fetch('http://192.168.0.27:3333/produtos').then(response => {
+    //   this.setState({ produtos: response.data });
+    // })
+    // .catch(function (error) {
+    //   console.log(error);
+    // })
+
+
+    // console.tron.log(produtos);  
+    // const data = {
+    //   NumProduto = response.NumProduto,
+    //   Produto = response.Produto,
+    // };
+    // this.setState({
+    //   produtos: [data]
+    // })
+  }
+  // async ComponentDidMount() {
+  //    // this.fetchData();
+  //    try {
+  //     // console.tron.log("HELLo");
+  //     const response = await fetch('http://192.168.0.27:3333/produtos');
+  //     const produtos = await response.json();
+  //     this.state({data: produtos.results});
+  //    } catch (error) {
+  //      console.log("Erro ao tentar buscar dados!", error);
+  //    }
+  // }
+
+  render() {
+    const { produtos } = this.state.data;
+
+    return (
+      <Container>
+        
+      
+
+        <FlatList
+          data = {this.state.data}
+          // data={produtos}
+          keySxtractor={produto => produtos.CodProduto}
+          renderItem={({ item }) => (
+            <Product>
+              <Produto>{item.NumProduto}</Produto>
+              <Produto>{item.Produto}</Produto>
+              <Produto>R$ {item.PrecoVenda}</Produto>
+              <Produto>Estoque: {item.QuantEstoque}</Produto>
+            </Product>
           )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
-};
+        />
+      </Container>
+      
+    );
+  }
+}
 
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
-
-export default App;

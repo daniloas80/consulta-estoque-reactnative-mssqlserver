@@ -1,4 +1,4 @@
-const Product = require('./src/app/models/Products');
+import Product from './src/app/models/Products';
 
 const express = require('express');
 
@@ -43,13 +43,20 @@ sequelize
 app.get('/produtos', function(req, res) {
   sequelize
     .query(
-      'SELECT TOP (10) CodProduto, NumProduto, Produto, QuantEstoque, PrecoVenda FROM tab_produto',
-      { raw: true }
-    )
-    .then(projects => {
-      //console.log(JSON.stringify(projects));
-      res.json(projects);
-    });
+      'SELECT CodProduto, NumProduto, Produto, QuantEstoque, PrecoVenda FROM tab_produto WHERE NumProduto = \'ABR.PXD.0101\'')
+      .then((metadata) => {
+        // Results will be an empty array and metadata will contain the number of affected rows.
+        res.json(metadata);
+      })
+      // .then(rows => {
+      //   res.send(JSON.stringify(rows))
+      // })
+      
+    // .then(projects => {
+    //   //console.log(JSON.stringify(projects));
+    //   res.json(projects);
+    // }
+    // );
 });
 
 const server = app.listen(3333, function() {
