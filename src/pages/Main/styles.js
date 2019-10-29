@@ -52,10 +52,31 @@ export const Avatar = styled.Image`
   background: #eee;
 `;
 export const Name = styled.Text`
-  font-size: 14px;
+  font-size: 16px;
   color: #333;
+  font-weight: normal;
+  margin-top: 15px;
+  text-align: center;
+`;
+export const Referencia = styled.Text`
+  font-size: 24px;
+  color: #937a84;
   font-weight: bold;
   margin-top: 5px;
+  text-align: center;
+`;
+export const Preco = styled.Text`
+  font-size: 20px;
+  color: #333;
+  font-weight: bold;
+  margin-top: 15px;
+  text-align: center;
+`;
+export const Estoque = styled.Text`
+  font-size: 44px;
+  color: #937a84;
+  font-weight: bold;
+  margin-top: 15px;
   text-align: center;
 `;
 export const Bio = styled.Text.attrs({

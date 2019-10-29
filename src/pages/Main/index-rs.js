@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '../../services/api';
 
-import { Container, Form, Input, SubmitButton, List, User, Referencia, Name, Preco, Estoque } from './styles';
+import { Container, Form, Input, SubmitButton, List, User, Avatar, Name, Bio, ProfileButton, ProfileButtonText } from './styles';
 
 // import { Container } from './styles';
 
@@ -32,20 +32,16 @@ export default class Main extends Component {
     handleAddUser = async () => {
       const { users, newUser } = this.state;
       this.setState({ loading: true });
-      // const response = await api.get(`/users/${newUser}`);
-      const response = await fetch(`http://192.168.0.27:3333/produtos/${newUser}`);
-      const commits = await response.json();
+      const response = await api.get(`/users/${newUser}`);
       const data = {
-        produto: commits[0].Produto,
-        referencia: commits[0].NumProduto,
-        preco: commits[0].PrecoVenda,
-        estoque: commits[0].QuantEstoque,
+        name: response.data.name,
+        login: response.data.login,
+        bio: response.data.bio,
+        avatar: response.data.avatar_url,
       };
 
-       // console.tron.log(commits[0].Produto);
-
       this.setState({
-        users: [ data ],
+        users: [ ... users, data],
         newUser: '',
         loading: false,
       });
@@ -75,13 +71,15 @@ export default class Main extends Component {
 
           <List
             data={users}
-            keyExtractor={user => user.referencia}
+            keyExtractor={user => user.login}
             renderItem={({ item }) => (
               <User>
-                <Referencia>Ref.: {item.referencia}</Referencia>
-                <Name>{item.produto}</Name>
-                <Preco>R$ {item.preco}</Preco>
-                <Estoque>Estoque: {item.estoque}</Estoque>
+                <Avatar source={{ uri: item.avatar}} />
+                <Name>{item.name}</Name>
+                <Bio>{item.bio}</Bio>
+                <ProfileButton onPress={() => {}}>
+                  <ProfileButtonText>Ver perfil</ProfileButtonText>
+                </ProfileButton>
               </User>
             )}
           />

@@ -40,10 +40,13 @@ sequelize
   });
 
 //   sequelize.close();
-app.get('/produtos', function(req, res) {
+app.get('/produtos/:id', function(req, res) {
   sequelize
     .query(
-      'SELECT CodProduto, NumProduto, Produto, QuantEstoque, PrecoVenda FROM tab_produto WHERE NumProduto = \'ABR.PXD.0101\'')
+      'SELECT CodProduto, NumProduto, Produto, QuantEstoque, PrecoVenda FROM tab_produto WHERE NumProduto LIKE :NumProduto', {
+        replacements: { NumProduto: `%${req.params.id}%`},
+        type: sequelize.QueryTypes.SELECT
+      })
       .then((metadata) => {
         // Results will be an empty array and metadata will contain the number of affected rows.
         res.json(metadata);
@@ -51,7 +54,7 @@ app.get('/produtos', function(req, res) {
       // .then(rows => {
       //   res.send(JSON.stringify(rows))
       // })
-      
+
     // .then(projects => {
     //   //console.log(JSON.stringify(projects));
     //   res.json(projects);
