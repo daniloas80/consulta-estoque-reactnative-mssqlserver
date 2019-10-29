@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '../../services/api';
 
-import { Container, Form, Input, SubmitButton, List, User, Referencia, Name, Preco, Estoque } from './styles';
+import { Container, Form, Input, SubmitButton, List, User, Referencia, Name, Preco, Estoque, LogoTitle } from './styles';
 
 // import { Container } from './styles';
 
@@ -92,5 +92,13 @@ export default class Main extends Component {
 }
 
 Main.navigationOptions = {
-  title: 'Spazzio App',
-}
+  // title: 'Spazzio App',
+  headerTitle: () => (
+      <LogoTitle
+          source={{
+              uri:
+                  'https://lojaspazzio.com.br/wp-content/uploads/2019/02/logo1.png',
+          }}
+      />
+  ),
+};

@@ -57,6 +57,7 @@ export const Name = styled.Text`
   font-weight: normal;
   margin-top: 15px;
   text-align: center;
+  font-family: 'Montserrat-Light';
 `;
 export const Referencia = styled.Text`
   font-size: 24px;
@@ -64,6 +65,7 @@ export const Referencia = styled.Text`
   font-weight: bold;
   margin-top: 5px;
   text-align: center;
+  font-family: 'Montserrat-Light';
 `;
 export const Preco = styled.Text`
   font-size: 20px;
@@ -71,6 +73,7 @@ export const Preco = styled.Text`
   font-weight: bold;
   margin-top: 15px;
   text-align: center;
+  font-family: 'Montserrat-Light';
 `;
 export const Estoque = styled.Text`
   font-size: 44px;
@@ -78,6 +81,7 @@ export const Estoque = styled.Text`
   font-weight: bold;
   margin-top: 15px;
   text-align: center;
+  font-family: 'Montserrat-Light';
 `;
 export const Bio = styled.Text.attrs({
   numberOfLines: 2,
@@ -102,4 +106,10 @@ export const ProfileButtonText = styled.Text`
   font-weight: bold;
   color: #fff;
   text-transform: uppercase;
+`;
+export const LogoTitle = styled.Image`
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    margin-bottom: 10px;
 `;
