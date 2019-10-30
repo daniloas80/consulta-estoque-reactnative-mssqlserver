@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Keyboard, ActivityIndicator } from 'react-native';
+import { Keyboard, ActivityIndicator, Alert } from 'react-native';
 import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '../../services/api';
@@ -31,26 +31,33 @@ export default class Main extends Component {
 
     handleAddUser = async () => {
       const { users, newUser } = this.state;
-      this.setState({ loading: true });
-      // const response = await api.get(`/users/${newUser}`);
-      const response = await fetch(`http://192.168.0.27:3333/produtos/${newUser}`);
-      const commits = await response.json();
-      const data = {
-        produto: commits[0].Produto,
-        referencia: commits[0].NumProduto,
-        preco: commits[0].PrecoVenda,
-        estoque: commits[0].QuantEstoque,
-      };
 
-       // console.tron.log(commits[0].Produto);
+      if (newUser !== '') {
+        this.setState({ loading: true });
+        // const response = await api.get(`/users/${newUser}`);
+        const response = await fetch(`http://192.168.0.27:3333/produtos/${newUser}`);
+        const commits = await response.json();
+        const data = {
+          produto: commits[0].Produto,
+          referencia: commits[0].NumProduto,
+          preco: commits[0].PrecoVenda.toFixed(2),
+          estoque: commits[0].QuantEstoque,
+        };
 
-      this.setState({
-        users: [ data ],
-        newUser: '',
-        loading: false,
-      });
+        // console.tron.log(commits[0].Produto);
 
-      Keyboard.dismiss();
+        this.setState({
+          users: [ data ],
+          newUser: '',
+          loading: false,
+        });
+
+        Keyboard.dismiss();
+      }
+      else {
+        Alert.alert('Código do produto não pode ser vazio');
+      }
+
     };
 
     render() {
