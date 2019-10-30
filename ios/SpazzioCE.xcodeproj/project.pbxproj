@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* SpazzioCETests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SpazzioCETests.m */; };
 		06DA5A8479154BD3973A4F1B /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7580E86235014171A59B7B37 /* EvilIcons.ttf */; };
