@@ -11,8 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize('db_spazzio', 'sa', 'unidata', {
-  //host: '10.211.55.3',
-  host: '192.168.0.38',
+  // host: '10.211.55.3',
+   host: '192.168.0.38',
   dialect: 'mssql',
 });
 

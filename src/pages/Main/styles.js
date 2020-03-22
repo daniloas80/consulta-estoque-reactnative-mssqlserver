@@ -41,6 +41,17 @@ export const List = styled.FlatList.attrs({
   margin-top: 20px;
 `;
 
+export const FaltList = styled.FlatList.attrs({
+  showsVerticalScrollIndicator: false,
+})`
+  margin-top: 20px;
+`;
+export const View = styled.View`
+  background-color: '#EEE';
+  margin-top: 20px;
+  padding: 30px;
+`;
+
 export const User = styled.View`
   align-items: center;
   margin: 0 20px 30px;
