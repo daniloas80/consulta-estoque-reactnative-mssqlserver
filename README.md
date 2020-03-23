@@ -1,6 +1,6 @@
 
 <h3 align="center">
-Versão Alpha do App em React Native e banco de dados MSSQL Server on Microsoft SQL para consulta de estoque de uma loja de artigos de decoração para casa em Natal/RN <a href="https://lojaspazzio.com.br" target="__blank">Loja Spazzio</a>
+Versão Alpha do App em React Native e banco de dados MSSQL Server on Microsoft SQL para consulta de estoque de uma loja de artigos de decoração para casa em Natal/RN
 </h3>
 
 ## Pré requisitos
